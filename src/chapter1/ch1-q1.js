@@ -46,7 +46,14 @@ export function hasUniqueCharactersSort(str) {
 }
 
 /**
- * An alternate solution. Possibly more concise.
+ * An alternate solution. Possibly more concise. Will work
+ * whether passed in as a char array or as a plain string.
+ * 
+ * Time: O(N)
+ * Additional space: O(N)
+ *
+ * @param  {string} str   String to check, passed in as a string or character array
+ * @return {boolean}      True if unique characters, otherwise false
  */
 function unique(str){
   let usedChars = [];
