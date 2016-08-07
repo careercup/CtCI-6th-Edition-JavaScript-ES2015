@@ -49,13 +49,13 @@ export function hasUniqueCharactersSort(str) {
  * An alternate solution. Possibly more concise.
  */
 function unique(str){
-	let usedChars = [];
-	for(const char of str){
-		const exists = usedChars.indexOf(char);
-		if(exists !== -1){
-			return false;
-		}
-		usedChars.push(char);
-	}
-	return true;
+  let usedChars = [];
+  for(const char of str){
+     const exists = usedChars.indexOf(char);
+     if(exists !== -1){
+       return false;
+     }
+     usedChars.push(char);
+  }
+  return true;
 }
