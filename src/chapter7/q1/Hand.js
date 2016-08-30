@@ -1,20 +1,20 @@
-import {Card} from './Card.js'
+import {Card} from './Card.js';
 
 export class Hand extends Card{
-    constructor(c, s){
-        super();
-        this.cards = [];
+    constructor(){
+      super();
+      this.cards = [];
     }
 
     score(){
-        return cards.reduce((aggregate, card) => aggregate + card.value());
+      return this.cards.reduce((aggregate, card) => aggregate + card.value());
     }
 
     addCard(card){
-        this.cards.push(card);
+      this.cards.push(card);
     }
 
     print(){
-        this.cards.forEach(card => card.print());
+      this.cards.forEach(card => card.print());
     }
 }
