@@ -1,8 +1,9 @@
+
 /* Employee is a super class for the Director, Manager, and Respondent classes. It is implemented as an
  * abstract class, since there should be no reason to instantiated an Employee type directly.
  */
-class Employee {
-	public Employee(CallHandler handler) {
+export class Employee {
+	constructor(handler) {
         this.currentCall = null;
         this.rank;
 

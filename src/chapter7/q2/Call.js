@@ -1,7 +1,9 @@
+import {Rank} from './Rank';
+
 export class Call {
 	constructor(c) {
         /* Minimal rank of employee who can handle this call. */
-        this.rank = Rank.Responder();
+        this.rank = Rank.Responder;
 
         /* Person who is calling. */
         this.caller = c;
@@ -29,10 +31,10 @@ export class Call {
 	}
 
 	incrementRank() {
-		if (this.rank == Rank.Responder()) {
-			this.rank = Rank.Manager();
-		} else if (this.rank == Rank.Manager()) {
-			this.rank = Rank.Director();
+		if (this.rank == Rank.Responder) {
+			this.rank = Rank.Manager;
+		} else if (this.rank == Rank.Manager) {
+			this.rank = Rank.Director;
 		}
 		return this.rank;
 	}

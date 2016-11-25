@@ -1,3 +1,10 @@
+import {Call} from './Call';
+import {Caller} from './Caller';
+
+import {Respondent} from './Respondent';
+import {Manager} from './Manager';
+import {Director} from './Director';
+
 /* CallHandler represents the body of the program,
  * and all calls are funneled first through it. 
  */
@@ -41,7 +48,7 @@ export class CallHandler {
     
     /* Gets the first available employee who can handle this call. */
     getHandlerForCall(call) {
-        for (let level = call.getRank().getValue(); level < LEVELS - 1; level++) {
+        for (let level = call.getRank(); level < LEVELS - 1; level++) {
             let employeeLevel = this.employeeLevels[level];
             for (let emp of employeeLevel) {
                 if (emp.isFree()) {
@@ -53,24 +60,25 @@ export class CallHandler {
     }
 
     /* Routes the call to an available employee, or saves in a queue if no employee available. */
-    dispatchCall(caller) {
-    	let call = new Call(caller);
-    	dispatchCall(call);
-    }
-    
-    /* Routes the call to an available employee, or saves in a queue if no employee available. */
-    public void dispatchCall(Call call) {
+    dispatchCall(callParam) {
+        let call = callParam;
+
+        if(callParam instanceof Caller){
+            call = new Call(callParam);
+        }
+
     	/* Try to route the call to an employee with minimal rank. */
-        Employee emp = getHandlerForCall(call);
+        let emp = this.getHandlerForCall(call);
         if (emp != null) {
         	emp.receiveCall(call);
         	call.setHandler(emp);
         } else {
 	        /* Place the call into corresponding call queue according to its rank. */
 	        call.reply("Please wait for free employee to reply");
-	        callQueues.get(call.getRank().getValue()).add(call);
+	        callQueues[call.getRank().getValue()].push(call);
         }
-    }    
+    }
+    
 
     /* An employee got free. Look for a waiting call that he/she can serve. Return true
      * if we were able to assign a call, false otherwise. */
