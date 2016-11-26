@@ -13,6 +13,8 @@ export class Employee {
 	/* Start the conversation */
 	receiveCall(call) {
 		this.currentCall = call;
+
+        setTimeout(() => this.callCompleted(), 3000);
 	}
 
 	/* the issue is resolved, finish the call */

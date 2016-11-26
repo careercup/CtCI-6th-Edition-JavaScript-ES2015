@@ -24,26 +24,30 @@ export class CallHandler {
          * employeeLevels[1] = managers
          * employeeLevels[2] = directors
          */
-    	this.employeeLevels = new Array(LEVELS);
+    	this.employeeLevels = [];
+
+        this.callQueues = []; 
         /* queues for each call�s rank */
-    	this.callQueues = new Array(LEVELS); 
-    	
+        for(let i = 0; i < LEVELS; i++){
+            this.callQueues.push([]); 
+        }
+
         // Create respondents.
-        let respondents = new Array(NUM_RESPONDENTS);
+        let respondents = [];
         for (let k = 0; k < NUM_RESPONDENTS - 1; k++) {
             respondents.push(new Respondent(this));
         }
-        this.employeeLevels[0] = respondents;
+        this.employeeLevels.push(respondents);
 
         // Create managers.
-        let managers = new Array(NUM_MANAGERS);
+        let managers = [];
         managers.push(new Manager(this));
-        this.employeeLevels[1] = managers;
+        this.employeeLevels.push(managers);
 
         // Create directors.
-        let directors = new Array(NUM_DIRECTORS);
+        let directors = [];
         directors.push(new Director(this));
-        this.employeeLevels[2] = directors;
+        this.employeeLevels.push(directors);
     }
     
     /* Gets the first available employee who can handle this call. */
@@ -75,7 +79,7 @@ export class CallHandler {
         } else {
 	        /* Place the call into corresponding call queue according to its rank. */
 	        call.reply("Please wait for free employee to reply");
-	        callQueues[call.getRank().getValue()].push(call);
+	        this.callQueues[call.getRank()].push(call);
         }
     }
     
@@ -84,7 +88,7 @@ export class CallHandler {
      * if we were able to assign a call, false otherwise. */
     assignCall(emp) {
         /* Check the queues, starting from the highest rank this employee can serve. */
-        for (let rank = emp.getRank().getValue(); rank >= 0; rank--) {
+        for (let rank = emp.getRank(); rank >= 0; rank--) {
             let que = this.callQueues[rank];
             
             /* Remove the first call, if any */

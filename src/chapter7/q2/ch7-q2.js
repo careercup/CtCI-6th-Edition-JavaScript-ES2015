@@ -3,5 +3,7 @@ import {Caller} from './Caller';
 
 let callHandler = new CallHandler();
 
-let caller = new Caller(1, 'alex');
-callHandler.dispatchCall(caller);
+for(let i = 0; i < 50; i++){
+    let caller = new Caller(i, ''+i);
+    callHandler.dispatchCall(caller);
+}
