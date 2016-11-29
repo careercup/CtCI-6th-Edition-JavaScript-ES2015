@@ -3,7 +3,7 @@ import {Rank} from './Rank';
 
 export class Respondent extends Employee {
     constructor(callHandler) {
-    	super(callHandler);
-    	this.rank = Rank.Responder;
+      super(callHandler);
+      this.rank = Rank.Responder;
     }
 }
