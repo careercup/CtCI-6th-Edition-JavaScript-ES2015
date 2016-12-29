@@ -15,7 +15,7 @@
  * @return {array}        Matrix that has been zeroed, same object as input
  */
 export function zeroMatrix(matrix) {
-  if (!matrix) {
+  if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
     throw new Error('invalid matrix');
   }
   if (matrix.length === 0) {
@@ -46,4 +46,92 @@ export function zeroMatrix(matrix) {
   }
 
   return matrix;
+}
+
+/**
+ * Instead of using two extra arrays as storage for rows and columns that will be
+ * nullified, use the first row and first column.
+ *
+ * N = matrix Y dimension
+ * M = matrix X dimension
+ * Time: O(N * M)
+ * Additional space: O(1)
+ *
+ * @param  {array} matrix Matrix to be zeroed in-place
+ * @return {array}        Matrix that has been zeroed, same object as input
+ */
+export function zeroMatrixConstantSpace(matrix) {
+  if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    throw new Error('invalid matrix');
+  }
+  if (matrix.length === 0) {
+    return matrix;
+  }
+
+  // check if first row has a zero
+  let firstRowHasZero = false;
+  for (let col = 0; col < matrix[0].length; col++) {
+    if (matrix[0][col] === 0) {
+      firstRowHasZero = true;
+      break;
+    }
+  }
+
+  // check if first column has a zero
+  let firstColHasZero;
+  for (let row = 0; row < matrix.length; row++) {
+    if (matrix[row][0] === 0) {
+      firstColHasZero = true;
+      break;
+    }
+  }
+
+  // check for zeros in the rest of the rows/cols and update
+  // first row/column storage accordingly
+  for (let row = 0; row < matrix.length; row++) {
+    for (let col = 0; col < matrix[0].length; col++) {
+      if (matrix[row][col] === 0) {
+        matrix[row][0] = 0;
+        matrix[0][col] = 0;
+      }
+    }
+  }
+
+  // nullify rows based on the values in the first column
+  for (let row = 1; row < matrix.length; row++) {
+    if (matrix[row][0] === 0) {
+      nullifyRow(matrix, row);
+    }
+  }
+
+  // nullify columns based on the values in the first row
+  for (let col = 1; col < matrix[0].length; col++) {
+    if (matrix[0][col] === 0) {
+      nullifyCol(matrix, col);
+    }
+  }
+
+  // nullify first row if necessary
+  if (firstRowHasZero) {
+    nullifyRow(matrix, 0);
+  }
+
+  // nullify first col if necessary
+  if (firstColHasZero) {
+    nullifyCol(matrix, 0);
+  }
+
+  return matrix;
+}
+
+function nullifyRow(matrix, row) {
+  for (let col = 0; col < matrix[row].length; col++) {
+    matrix[row][col] = 0;
+  }
+}
+
+function nullifyCol(matrix, col) {
+  for (let row = 0; row < matrix.length; row++) {
+    matrix[row][col] = 0;
+  }
 }
