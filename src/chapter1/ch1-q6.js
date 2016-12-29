@@ -8,8 +8,8 @@
  * Time: O(N)
  * Additional space: O(N)
  *
- * @param  {string} str [description]
- * @return {[type]}     [description]
+ * @param  {string} str The given string
+ * @return {string}     The compressed string or the original string
  */
 export function compressString(str) {
   if (!str) {
