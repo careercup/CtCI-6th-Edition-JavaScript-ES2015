@@ -11,14 +11,15 @@
  * @return {boolean}      True if unique characters, otherwise false
  */
 export function hasUniqueCharactersSet(str) {
-  let chars = new Set();
+  const chars = new Set();
 
-  for (let i = 0; i < str.length; ++i) {
-    if (chars.has(str[i])) {
+  for (const ch of str) {
+    if (chars.has(ch)) {
       return false;
     }
-    chars.add(str[i]);
+    chars.add(ch);
   }
+
   return true;
 }
 
