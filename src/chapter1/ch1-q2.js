@@ -20,20 +20,17 @@ export function isPermutationMap(str1, str2) {
 
   let chars = new Map();
 
-  for (let i = 0; i < str1.length; ++i) {
-    chars.set(str1[i], chars.get(str1[i]) + 1 || 1); // increment or set to 1
+  for (const ch of str1) {
+    chars.set(ch, chars.get(ch) + 1 || 1); // increment or set to 1
   }
 
-  for (let i = 0; i < str2.length; ++i) {
-    let count = chars.get(str2[i]);
-    if (!count) {
-      return false;
-    }
-    if (count === 1) {
-      chars.delete(str2[i]);
-    }
-    else {
-      chars.set(str2[i], count - 1);
+  for (const ch of str2) {
+    if (!chars.has(ch)) return false; // shortcircuit if a char doesn't exist in both strings
+    const nextCount = chars.get(ch) - 1;
+    if (nextCount === 0) {
+      chars.delete(ch);
+    } else {
+      chars.set(ch, nextCount);
     }
   }
 
@@ -57,8 +54,13 @@ export function isPermutationSorted(str1, str2) {
     return false;
   }
   // sort string using quicksort
-  str1.sort();
-  str2.sort();
+  const sorted1 = sortString(str1);
+  const sorted2 = sortString(str2);
 
-  return str1.every((v, i) => v === str2[i]);
+  return sorted1.every((v, i) => v === sorted2[i]);
+}
+
+// for the purposes of the question, ignore array creation and assume O(1) space sort as with arrays
+function sortString(str) {
+  return Array.from(str).sort();
 }
