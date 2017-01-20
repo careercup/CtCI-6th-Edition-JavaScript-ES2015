@@ -17,8 +17,8 @@ export function encodeSpaces(url) {
   }
 
   let spaceCount = 0;
-  for (let i = 0; i < url.length; ++i) {
-    if (url[i] === ' ') {
+  for (let ch of url) {
+    if (ch === ' ') {
       ++spaceCount;
     }
   }

@@ -1,10 +1,11 @@
-import { expect } from 'chai';
 import * as funcs from './ch1-q2';
+
+import { expect } from 'chai';
 
 for (let key in funcs) {
   let func = funcs[key];
 
-  describe('ch1-q2: ' + key, function() {
+  describe('ch1-q2: ' + key, function () {
 
     [
       ['abcdefghi', 'ihgfedcba'],
@@ -13,8 +14,8 @@ for (let key in funcs) {
       ['icarraci', 'carcarii']
     ].forEach(args => {
 
-      it(`returns true for strings that are permutations: '${args[0]}' & '${args[1]}'`, function() {
-        expect(func(args[0].split(''), args[1].split(''))).to.be.true;
+      it(`returns true for strings that are permutations: '${args[0]}' & '${args[1]}'`, function () {
+        expect(func(args[0], args[1])).to.be.true;
       });
 
     });
@@ -26,8 +27,8 @@ for (let key in funcs) {
       ['45678', '1239']
     ].forEach(args => {
 
-      it(`returns false for strings that are not permutations: '${args[0]}' & '${args[1]}'`, function() {
-        expect(func(args[0].split(''), args[1].split(''))).to.be.false;
+      it(`returns false for strings that are not permutations: '${args[0]}' & '${args[1]}'`, function () {
+        expect(func(args[0], args[1])).to.be.false;
       });
 
     });

@@ -17,8 +17,8 @@ export function isPalindromePermutationsSet(str) {
     return false;
   }
 
-  let chars = new Set();
-  for (let char of str) {
+  const chars = new Set();
+  for (const char of str) {
     if (char !== ' ') { // ignore spaces
       if (chars.has(char)) {
         chars.delete(char);
