@@ -62,3 +62,29 @@ export function isPermutationSorted(str1, str2) {
 
   return str1.every((v, i) => v === str2[i]);
 }
+
+/**
+ * An alternate solution. Appears more elegant, concise, and performant. 
+ * Will work whether either string is passed as a char array or as a plain string.
+ * 
+ * Time: O(N)
+ * Additional space: O(N)
+ *
+ * @param  {string} str1   First string, passed in as a string or character array
+ * @param  {string} str2   Second string, passed in as a string or character array
+ * @return {bool}          True if permutation, otherwise false
+ */
+function permutation(str1, str2){
+  const str2arr = [...str2];
+  for(const char of str1){
+    const index = str2arr.indexOf(char);
+    if(index === -1){
+      return false;
+    }
+    str2arr.splice(index, 1);
+  }
+  if(str2arr.length){
+    return false;
+  }
+  return true;
+}
