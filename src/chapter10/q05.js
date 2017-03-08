@@ -5,8 +5,8 @@ export function findIndex(stringArray, word) {
   //saving word indexes in separate array
   let wordIndexes = [];
   for (let i = 0, len = stringArray.length; i < len; i++) {
-    if (word[i] !== '') {
-      wordIndexes.push(word[i]);
+    if (stringArray[i] !== '') {
+      wordIndexes.push(i);
     }
   }
 
