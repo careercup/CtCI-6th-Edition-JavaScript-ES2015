@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { findIndex } from './q05';
 
 
-describe('ch10-q04: find index in listy', function () {
+describe('ch10-q05: find index of item in string array with empty strings', function () {
   const array = ['at', '', '', '', 'ball', '', '', 'car', '', '', 'dad', '', ''];
 
   it('Index of "ball"', function () {
