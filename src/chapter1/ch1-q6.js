@@ -26,7 +26,7 @@ export function compressString(str) {
     // JS does not have a StringBuilder/StringBuffer style class for creating strings
     // string concatenation has been heavily optimised in JS implementations and
     // is faster than creating a string via an array then using a .join('') at the end
-    cStr += (i - start + 1) + char;
+    cStr += char + (i - start + 1);
   }
 
   return cStr.length < str.length ? cStr : str;
