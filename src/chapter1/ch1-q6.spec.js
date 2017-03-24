@@ -30,12 +30,12 @@ for (let key in funcs) {
     });
 
     [
-      { arg: 'aaa', out: '3a' },
-      { arg: 'bbbbbb', out: '6b' },
-      { arg: 'abbbbbbc', out: '1a6b1c' },
-      { arg: 'aaabccc', out: '3a1b3c' },
-      { arg: 'hhellllllllooooo!', out: '2h1e8l5o1!' },
-      { arg: 'woorrrllllddddd', out: '1w2o3r4l5d' }
+      { arg: 'aaa', out: 'a3' },
+      { arg: 'bbbbbb', out: 'b6' },
+      { arg: 'abbbbbbc', out: 'a1b6c1' },
+      { arg: 'aaabccc', out: 'a3b1c3' },
+      { arg: 'hhellllllllooooo!', out: 'h2e1l8o5!1' },
+      { arg: 'woorrrllllddddd', out: 'w1o2r3l4d5' }
     ].forEach(context => {
 
       it(`returns ${context.out} with string ${context.arg}`, function() {
