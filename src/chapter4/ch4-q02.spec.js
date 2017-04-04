@@ -9,14 +9,14 @@ for (let key in funcs) {
 
     it('returns empty tree with no values', function() {
       let tree = func(null);
-      expect(tree.root).to.be.null;
+      expect(tree).to.be.null;
       tree = func([]);
-      expect(tree.root).to.be.null;
+      expect(tree).to.be.null;
     });
 
     it('returns tree with root node set with one value', function() {
       let tree = func([10]);
-      expect(tree.root.val).to.equal(10);
+      expect(tree.val).to.equal(10);
     });
 
     it('returns a balanced tree with 10 nodes', function() {
