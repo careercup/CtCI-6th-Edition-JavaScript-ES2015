@@ -26,9 +26,6 @@ class Node {
 }
 
   class BinaryTree {
-  constructor() {
-    this.root = null;
-  }
 
   createBst(arr, start, end) {
     if (start > end) return null;
