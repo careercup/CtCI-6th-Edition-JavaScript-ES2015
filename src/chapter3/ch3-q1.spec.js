@@ -4,14 +4,14 @@ import * as classes from './ch3-q1';
 for (let key in classes) {
   let Stack = classes[key];
 
-  describe('ch3-q1: ' + key, function() {
+  describe('ch3-q1: ' + key, () => {
 
-    beforeEach(function() {
+    beforeEach(() => {
       this.stack = new Stack();
     });
 
-    it('can push and pop values from middle stack correctly', function() {
-      let stack = [];
+    it('can push and pop values from middle stack correctly', () => {
+      const stack = [];
       for (let i = 1; i < 100; i += 4) {
         let val = Math.trunc(Math.random() * 999999);
         this.stack.push(2, val);
@@ -21,8 +21,8 @@ for (let key in classes) {
       stack.reverse().forEach(v => expect(this.stack.pop(2)).to.equal(v));
     });
 
-    it('can push, peek and pop values from all 3 stacks correctly', function() {
-      let stacks = [[], [], []];
+    it('can push, peek and pop values from all 3 stacks correctly', () => {
+      const stacks = [[], [], []];
       for (let j = 9; j > 0; --j) {
         for (let i = 1; i <= 3; ++i) {
           let val = i * 10 + j;
