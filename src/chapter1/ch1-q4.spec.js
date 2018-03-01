@@ -18,6 +18,7 @@ for (let key in funcs) {
     [
       ' ',
       '   ',
+      'Tact Coa',
       'aabb',
       'ab a b',
       ' a b a b ',
@@ -25,22 +26,45 @@ for (let key in funcs) {
       'sa sadfgsadfgh jk;hjkz;sadfg hjk;dfghjk;'
     ].forEach(arg => {
 
-      it(`returns true for palindromic string: '${arg}'`, function() {
-        expect(func(arg.split(''))).to.be.true;
-      });
+      if (key === 'isPalindromePermutationsBit') {
+        if(/^[a-zA-Z\s]+$/.test(arg)) {
+          
+          it(`returns true for palindromic string which only contains English alphabet and space: '${arg}'`, function() {
+            expect(func(arg.split(''))).to.be.true;
+          });
 
+        }
+      } else {
+
+        it(`returns true for palindromic string: '${arg}'`, function() {
+          expect(func(arg.split(''))).to.be.true;
+        });
+
+      }
     });
 
     [
       'abcadef',
       '1234567890',
-      'a b'
+      'a b',
+      'sg! sG$'
     ].forEach(arg => {
 
-      it(`returns false for non-palindromic string: '${arg}'`, function() {
-        expect(func(arg.split(''))).to.be.false;
-      });
+      if (key === 'isPalindromePermutationsBit') {
+        if(/^[a-zA-Z\s]+$/.test(arg)) {
+          
+          it(`returns false for palindromic string which only contains English alphabet and space: '${arg}'`, function() {
+            expect(func(arg.split(''))).to.be.false;
+          });
 
+        }
+      } else {
+      
+        it(`returns false for non-palindromic string: '${arg}'`, function() {
+          expect(func(arg.split(''))).to.be.false;
+        });
+
+      }
     });
 
   });
