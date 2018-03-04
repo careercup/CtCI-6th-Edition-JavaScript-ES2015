@@ -60,7 +60,8 @@ export function isPalindromePermutationsBit(str) {
     }
   }
 
-  return (((flags - 1) & flags) === 0); // ex: It should be 32 bits, abuse 4 bits to represent same logic.
+  return (((flags - 1) & flags) === 0); // ex: flags should be 32 bits, 
+                                        // abuse 4 bits for brief explanation here.
                                         // flags: 0110,  0110 - 0001 = 0101, 0101 & 0110 = 0100
                                         // flags: 0100,  0100 - 0001 = 0011, 0011 & 0100 = 0000
                                         // flags: 0000,  0 - 1 = -1,         1111 (two's complement) & 0000 = 0000 
