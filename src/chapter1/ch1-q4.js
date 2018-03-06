@@ -20,14 +20,50 @@ export function isPalindromePermutationsSet(str) {
   let chars = new Set();
   for (let char of str) {
     if (char !== ' ') { // ignore spaces
-      if (chars.has(char)) {
-        chars.delete(char);
+      let lchar = char.toLowerCase();
+      if (chars.has(lchar)) {
+        chars.delete(lchar);
       }
       else {
-        chars.add(char);
+        chars.add(lchar);
       }
     }
   }
 
   return chars.size <= 1;
 }
+
+/**
+ * Use a Number in binray form as a series of flags. Convert each coming 
+ * letter (English Alphabet) to lowercase and map it to an integer between 0 and 26,
+ * see it as the position of bit and toggle this bit. After iteration, check if 
+ * flags has at most one bit that is set to 1.
+ *
+ * N = |str|
+ * Time: O(N)
+ * Additional space: O(1)
+ *
+ * @param  {string[]} str String to check as a character array
+ * @return {boolean}      True if input string is a permutation of a palindrome (ignoring spaces), otherwise false
+ */
+
+export function isPalindromePermutationsBit(str) {
+  if (!str) {
+    return false;
+  }
+
+  let flags = 0;
+
+  for (let char of str) {
+    if (char !== ' ') {
+      flags ^= (1 << (char.toLowerCase().charCodeAt(0) - 'a'.charCodeAt(0)));
+    }
+  }
+
+  return (((flags - 1) & flags) === 0); // Abuse only 4 bits for brief explanation here.
+                                        // flags: 0110,  0110 - 0001 = 0101, 0101 & 0110 = 0100
+                                        // flags: 0100,  0100 - 0001 = 0011, 0011 & 0100 = 0000
+                                        // flags: 0000,  0 - 1 = -1,         1111 (two's complement) & 0000 = 0000 
+}
+
+
