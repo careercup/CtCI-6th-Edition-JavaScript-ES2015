@@ -34,7 +34,7 @@ export function isPalindromePermutationsSet(str) {
 }
 
 /**
- * Use a integer which as 32 bits as a series of flags. Convert each coming 
+ * Use a Number in binray form as a series of flags. Convert each coming 
  * letter (English Alphabet) to lowercase and map it to an integer between 0 and 26,
  * see it as the position of bit and toggle this bit. After iteration, check if 
  * flags has at most one bit that is set to 1.
@@ -60,8 +60,7 @@ export function isPalindromePermutationsBit(str) {
     }
   }
 
-  return (((flags - 1) & flags) === 0); // ex: flags should be 32 bits, 
-                                        // abuse 4 bits for brief explanation here.
+  return (((flags - 1) & flags) === 0); // Abuse only 4 bits for brief explanation here.
                                         // flags: 0110,  0110 - 0001 = 0101, 0101 & 0110 = 0100
                                         // flags: 0100,  0100 - 0001 = 0011, 0011 & 0100 = 0000
                                         // flags: 0000,  0 - 1 = -1,         1111 (two's complement) & 0000 = 0000 
