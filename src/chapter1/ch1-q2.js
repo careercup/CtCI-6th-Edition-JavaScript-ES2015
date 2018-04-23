@@ -37,7 +37,7 @@ export function isPermutationMap(str1, str2) {
     }
   }
 
-  return chars.size === 0;
+  return true;
 }
 
 /**
