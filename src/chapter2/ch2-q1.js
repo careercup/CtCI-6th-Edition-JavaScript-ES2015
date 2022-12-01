@@ -31,3 +31,24 @@ export function removeDuplicatesSet(list) {
 
   return list; // return list, head will never change
 }
+
+/**
+ * Using the "Runner" technique
+ * Time O(n^2)
+ * Space O(1)
+ */
+function removeDuplicates(myLinked) {
+  let currentNode = myLinked;
+  while (currentNode !== null) {
+    let runner = currentNode;
+    while (runner.next !== null) {
+      if (runner.next.value === currentNode.value) {
+        runner.next = runner.next.next;
+      } else {
+        runner = runner.next;
+      }
+    }
+    currentNode = currentNode.next;
+  }
+  return myLinked;
+}
